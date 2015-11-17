@@ -1,0 +1,47 @@
+/////////////////////////////////////////////////
+/* This is /*comment */             ==> sCurrentLine => null
+
+/////////////////////////////////////////////////
+/* This is /*comment */ x = y;      ==> sCurrentLine => x = y;
+
+/////////////////////////////////////////////////
+// This is comment      ==> sCurrentLine => null
+
+/////////////////////////////////////////////////
+// This is comment /*   ==> sCurrentLine => null
+
+/////////////////////////////////////////////////
+/* xxxxxx                                   
+xxx/*yyyyy**/ a = b; /*xxxx
+x= y /*this is comment///*/ z=m /*something else*/
+
+==> sCurrentLine => null
+==> sCurrentLine => a = b; /*xxxx*    then sCurrentLine => /*xxxx       then sCurrentLine =>null
+/////////////////////////////////////////////////
+/* new comment started
+        //ssome comment */
+==> sCurrentLine => null
+==> sCurrentLine => null
+/////////////////////////////////////////////////
+x - y; /*asdasc*/
+==> sCurrentLine => null
+/////////////////////////////////////////////////
+x - y; /*asdasc
+ascaskjcnj*/
+==> sCurrentLine => /*asdasc        then sCurrentLine => null
+/////////////////////////////////////////////////
+x = y; //some comment
+==> sCurrentLine => null
+/////////////////////////////////////////////////
+x - y; /*asdasc*/ m = n;
+==> sCurrentLine => /*asdasc*/ m = n;   then sCurrentLine => m = n;
+/////////////////////////////////////////////////
+/* multiline comment started
+next line
+// any random thing /*
+*/
+==> sCurrentLine => null
+==> sCurrentLine => null
+==> sCurrentLine => null
+==> sCurrentLine => null
+/////////////////////////////////////////////////
