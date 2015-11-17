@@ -1,20 +1,17 @@
-
-
 import java.io.*;
 
 public class CommentAnalysis {
 
     int codeLines = 0, commentLines = 0, totalLines = 0;
     boolean commentStarted = false;
-    static File inFile = null;
+    static File fileName = null;
 
     public static void main(String[] args) {
         if (0 < args.length) {
             // text file will be passed during run time
-            inFile = new File(args[0]);
+            fileName = new File(args[0]);
         } else {
-            //System.out.println("Cant Find The File Specified : " + inFile);
-            System.out.println(0);
+            System.out.println("Cant Find The File Specified : " + fileName);
         }
         CommentAnalysis obj = new CommentAnalysis();
         obj.analyzeFile();
@@ -26,10 +23,8 @@ public class CommentAnalysis {
         boolean sameLine = false;
 
         try {
-            // passing the text file location for FileReader.
-            br = new BufferedReader(new FileReader(inFile));
+            br = new BufferedReader(new FileReader(fileName));
 
-            // Looping through the text file
             while ((sCurrentLine = br.readLine()) != null) {
                 sCurrentLine = sCurrentLine.trim();
                 sameLine = false;
@@ -40,7 +35,7 @@ public class CommentAnalysis {
                     sameLine = true;
                 }
             }
-            // excluding the number of lines that has comments and new lines
+
             totalLines = codeLines + commentLines;
             System.out.println("Total number of Lines are : " + totalLines);
             System.out.println("Number of comments: " + commentLines);
